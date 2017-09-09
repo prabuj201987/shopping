@@ -1,0 +1,37 @@
+<h1>Categories</h1>
+<input type="text" [(ngModel)]='category'  placeholder="Enter New Category" class="form-control">
+<div class="alert alert-danger" *ngIf="alreadyExists">
+  Category "{{category}}" already exists.
+</div>
+<div class="divbtn">
+    <button [disabled]='!category' (click)="checkAndAdd()" class="btn btn-primary">Add</button>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of categories$ | async">
+      <td>
+        <ng-container *ngIf ='!c.textToggle'>
+          {{c.name}}
+        </ng-container>
+        <ng-container *ngIf ='c.textToggle'>
+          <input type="text" [(ngModel)]="c.name"  class="form-control">
+        </ng-container>
+      </td>
+      <td>
+        <ng-container *ngIf ='!c.textToggle'>
+          <button (click)="c.textToggle = !c.textToggle" class="btn btn-warning">Edit</button>
+        </ng-container>
+        <ng-container *ngIf ='c.textToggle'>
+          <button (click)="updateData(c.$key, c.name);c.textToggle = !c.textToggle"class="btn btn-success">Done</button>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>

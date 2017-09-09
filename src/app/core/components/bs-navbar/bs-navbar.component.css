@@ -1,0 +1,10 @@
+
+.dropdown-toggle,.dropdown-item { 
+  cursor: pointer;
+}
+nav.bg-green {
+  background-color: #63b175;
+}
+.nav-link {
+  color: rgb(255, 255, 255) !important;
+}
